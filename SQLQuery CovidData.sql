@@ -1,3 +1,10 @@
+/*
+Covid 19 Data Exploration 
+
+Skills used: Joins, CTE's, Temp Tables, Windows Functions, Aggregate Functions, Creating Views, Converting Data Types
+
+*/
+
 SELECT *
 FROM PortfolioProject..CovidDeaths
 WHERE continent is not null
@@ -8,6 +15,8 @@ ORDER BY 3,4
 --WHERE continent is not null
 --ORDER BY 3,4
 
+ -- Select Data that we are going to be starting with
+ 
 SELECT Location, date, total_cases, new_cases, total_deaths, population
 FROM PortfolioProject..CovidDeaths
 WHERE continent is not null
@@ -31,6 +40,7 @@ and continent is not null
 order by 1,2
 
 --Looking at countries with highest infection rate compared to population
+ 
 SELECT Location, population, MAX(total_cases) as HighestInfectionCount, MAX(total_cases/population)*100 as PercentPopulationInfected
  FROM PortfolioProject..CovidDeaths
 --where location like '%states%'
@@ -39,8 +49,6 @@ Group by  Location, population
 Order by PercentPopulationInfected desc
 
 --Showing Countries with Highest Death Count per Population
-
-
 
 SELECT Location, MAX(CAST(total_deaths as int)) as TotalDeathCount
  FROM PortfolioProject..CovidDeaths
@@ -133,8 +141,6 @@ Join PortfolioProject..CovidVaccinations vac
 
   --Creating view to store data for data visualisations
  
-
-
 CREATE VIEW 
 
 PercentPopulationVaccinated as
